@@ -61,6 +61,7 @@
                                     <div class="item-delete"></div>
                                     <img id="preview" class="uploaded-image border p-2" style="display: none;"/>
                                 </div>
+                                <?= "<h6 class='text-red fs-6 mt-2'>" . (!empty($errorImageUpload) ? $errorImageUpload : '') . "</h6>"; ?>
                                 <div data-mdb-input-init class="form-outline mt-4">
                                     <label class="form-label" for="author">Author</label>
                                     <input type="text" class="form-control <?= (form_error('author') != "") ? 'is-invalid' : ''; ?>" placeholder="Author" id="author" value="<?= set_value('author'); ?>" name="author" />
