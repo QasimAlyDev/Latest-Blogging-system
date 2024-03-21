@@ -13,6 +13,7 @@ function resizeImage($source_path,$new_path,$width,$height){
     $config['thumb_marker']       = '';
 
     $CI->load->library('image_lib', $config);
+    $CI->image_lib->initialize($config); 
     $CI->image_lib->resize();
     $CI->image_lib->clear();
 }
