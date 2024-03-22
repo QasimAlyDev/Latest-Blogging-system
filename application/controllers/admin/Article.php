@@ -201,5 +201,27 @@ class article extends CI_Controller{
     }
     
  }
+
+ public function delete($id){
+    $this->load->model('Article_model');
+    $res = $this->Article_model->getArticle($id);
+    if(empty($res)){
+        $_SESSION['status'] = "Article not found!";
+        $_SESSION['status_code'] = "warning";
+        redirect(base_url().'admin/category/index');
+    }
+    if(file_exists('./public/uploads/article/' . $res['image'])) {
+        unlink('./public/uploads/article/' . $res['image']);
+        unlink('public/uploads/article/thumb_admin/' . $res['image']);
+        unlink('public/uploads/article/thumb_front/' . $res['image']);
+    }
+
+    $this->Article_model->delete($id);
+    // this code for sweetalert showing code start
+    $_SESSION['status'] = "Article Deleted Successfully.";
+    $_SESSION['status_code'] = "success";
+    // this code for sweetalert showing code end
+    redirect(base_url().'admin/article/index');
+}
 }
 ?>  
