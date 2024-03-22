@@ -51,16 +51,53 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>database id</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                        <th>Action</th>
-                                    </tr>
+                                            <!-- <th width="50">#</th> -->
+                                            <th width="50">DB id</th>
+                                            <th width="100">Action</th>
+                                            <th width="100">Image</th>
+                                            <th>Title</th>
+                                            <th width="180">Author</th>
+                                            <th width="100">Created_at</th>
+                                            <th width="70">Status</th>
+                                            
+                                        </tr>
                                 </thead>
                                 <tbody>
+                                    <?php if(!empty($articles)){ ?>
+                                        <?php $i=1; foreach ($articles as $article) {?>
+                                            <tr>
+                                                <!-- <td><?= $i++; ?></td> -->
+                                                <td><?= $article['id']; ?></td>
+                                                <td class="p-5">
+                                                    <a href="<?= base_url().'admin/article/edit/'.$article['id'] ?>">
+                                                        <i class="fas fa-edit text-secondary" data-toggle="tooltip" data-placement="top" title="Edit Article"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);"  onclick="deleteArticle(<?= $article['id'];?>)">
+                                                        <i class="fas fa-trash-alt text-secondary" data-toggle="tooltip" data-placement="top" title="Delete Article" ></i>
+                                                    </a>
+                                                </td>
 
+                                                <td>
+                                                    <?php if($article['image'] != "" && file_exists('./public/uploads/article/thumb_admin/'.$article['image'])){ ?>
+                                                                <img class="uploaded-image" src="<?= base_url().'public/uploads/article/thumb_admin/'.$article['image'] ?>">
+                                                                <?php }else{ ?>
+                                                                <img class="default-image" src="<?= base_url().'public/admin/dist/img/no-image.jpg';?>">
+                                                    <?php } ?>
+                                                </td>
+                                                <td><?= $article['title']; ?></td>
+                                                <td><?= $article['author']; ?></td>
+                                                <td><?= $article['created_at']; ?></td>
+                                                <td>
+                                                    <?php if($article['status'] == 1){ ?>
+                                                            <span class="badge badge-success">Active</span>
+                                                    <?php }else{ ?>
+                                                            <span class="badge badge-danger">Block</span>
+                                                    <?php } ?>
+                                                </td>
+                                               
+                                            </tr>
+                                            <?php } ?>
+                                        <?php } ?>
                                 <tbody>    
                             </table>
                         </div>
@@ -78,21 +115,21 @@
 <!-- /.content-wrapper -->
 <?php $this->load->view('admin/footer') ?>
     <script>
-        // function deleteCategory(id) {
-        //     Swal.fire({
-        //         title: 'Are you sure?',
-        //         text: "You won't be able to revert this!",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Yes, delete it!'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             window.location.href = '<?= base_url() . 'admin/category/delete/'; ?>' + id;
-        //         }
-        //     });
-        // }
+        function deleteCategory(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '<?= base_url() . 'admin/category/delete/'; ?>' + id;
+                }
+            });
+        }
     </script>
     <script>
         // Initialize tooltips

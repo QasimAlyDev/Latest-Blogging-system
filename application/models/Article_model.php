@@ -2,14 +2,13 @@
 class Article_model extends CI_Model{
     public function create($formArray){
         $this->db->insert('articles',$formArray);
+        return $this->db->insert_id();
     }
-    // public function getCategories($params=[]){
-    //     if(!empty($params['querystring'])) {
-    //         $this->db->like('name',$params['querystring']);
-    //     }
-    //    $result = $this->db->get('categories')->result_array();
-    //    return $result;
-    // }
+    public function getarticles(){
+        
+       $result = $this->db->get('articles')->result_array();
+       return $result;
+    }
     // public function getCategory($id){
     //     $this->db->where('id',$id);
     //     $res = $this->db->get('categories')->row_array();

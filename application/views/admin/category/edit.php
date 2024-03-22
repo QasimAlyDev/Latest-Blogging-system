@@ -49,7 +49,7 @@
                                     <img class="uploaded-image my-3 border p-2" src="<?= base_url().'public/uploads/category/thumb/'.$res['image'] ?>">
                                     <?php }else{ ?>
                                     <img class="default-image my-3 border p-2"
-                                        src="<?= base_url().'public/uploads/category/no-image.jpg';?>">
+                                        src="<?= base_url().'public/admin/dist/img/no-image.jpg';?>">
                                     <?php } ?>
                                     <label for="file-input" class="fake-btn">Choose files</label>
                                     <input id="file-input" class="file-input" name="image" type="file" multiple>

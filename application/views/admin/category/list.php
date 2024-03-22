@@ -52,12 +52,11 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>database id</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                        <th>Action</th>
+                                        <!-- <th>#</th> -->
+                                        <th width="50">Action</th>
+                                        <th width="">DB id</th>
+                                        <th >Name</th>
+                                        <th >Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +64,15 @@
                                     <?php if(!empty($categories)){ ?>
                                             <?php $i=1; foreach ($categories as $categoryRow) {?> 
                                                 <tr>
-                                                    <td><?= $i++?></td>
+                                                    <!-- <td><?= $i++?></td> -->
+                                                    <td class="p-4">
+                                                        <a href="<?= base_url().'admin/category/edit/'.$categoryRow['id'] ?>">
+                                                            <i class="fas fa-edit text-secondary" data-toggle="tooltip" data-placement="bottom" title="Edit Category"></i>
+                                                        </a>
+                                                        <a href="javascript:void(0);" onclick="deleteCategory(<?= $categoryRow['id'];?>)">
+                                                            <i class="fas fa-trash-alt text-secondary" data-toggle="tooltip" data-placement="bottom" title="Delete Category"></i>
+                                                        </a>
+                                                    </td>
                                                     <td><?= $categoryRow['id'];?></td>
                                                     <td><?= $categoryRow['name'];?></td>   
                                                     <td>
@@ -75,16 +82,7 @@
                                                             <span class="badge badge-danger">Block</span>
                                                         <?php } ?>
                                                     </td>
-                                                    <td>
-                                                        <a href="<?= base_url().'admin/category/edit/'.$categoryRow['id'] ?>" class="editbtn">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" onclick="deleteCategory(<?= $categoryRow['id'];?>)" class="deletebtn">
-                                                            <i class="fas fa-trash-alt"></i> Delete
-                                                        </a>
-                                                    </td>
+                                                    
                                                 </tr>
                                             <?php } ?>
                                     <?php }else{ ?> 

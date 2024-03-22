@@ -23,7 +23,7 @@
   <!-- AdminLTE Theme -->
   <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/adminlte.min.css">
   <!-- Custom Style Sheet -->
-  <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/style.css">
+  <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/stylee.css">
   
   <style>
 

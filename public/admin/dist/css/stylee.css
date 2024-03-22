@@ -38,10 +38,6 @@
   }
 }
 
-
-
-
-
 .mybtn {
     background-color: #7864E4;
     color: #fff;
@@ -181,7 +177,6 @@
     max-height: 200px;
     display: block;
     margin: 0 auto;
-    border: 5px solid black;
   }
 
   .fake-btn {

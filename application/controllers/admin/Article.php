@@ -1,9 +1,22 @@
 <?php
 defined('BASEPATH') OR exit ('No direct script access allowed');
 class article extends CI_Controller{
+    public function __construct(){
+        parent::__construct();
+        $admin = $this->session->userdata('admin');
+        if(empty($admin)){
+            $this->session->set_flashdata("msg","Please Login!");
+            redirect(base_url().'admin/login/index');
+        }
+
+    }
+
     // this method will show articles listing page
     public function index(){
-        $this->load->view("admin/article/list");
+        $this->load->model('Article_model');
+        $articles = $this->Article_model->getarticles();
+        $data['articles']=$articles;
+        $this->load->view("admin/article/list",$data);
     }
 
     // This method is used to create new article
@@ -91,5 +104,6 @@ class article extends CI_Controller{
         }
 
     }
+        
 }
 ?>  
