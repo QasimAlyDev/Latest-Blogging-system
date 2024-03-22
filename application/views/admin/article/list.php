@@ -1,5 +1,4 @@
 <?php $this->load->view('admin/header')?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -69,6 +68,29 @@
                                                 <!-- <td><?= $i++; ?></td> -->
                                                 <td><?= $article['id']; ?></td>
                                                 <td class="p-5">
+                                                    <a href="" data-toggle="modal" data-target="#modal-default">
+                                                        <i class="fa-solid fa-eye text-secondary" data-toggle="tooltip" data-placement="top" title="View Article"></i>
+                                                    </a>
+                                                    <div class="modal fade" id="modal-default">
+                                                        <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h4 class="modal-title">Article Description</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <?= $article['description'];?>
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
                                                     <a href="<?= base_url().'admin/article/edit/'.$article['id'] ?>">
                                                         <i class="fas fa-edit text-secondary" data-toggle="tooltip" data-placement="top" title="Edit Article"></i>
                                                     </a>
@@ -115,7 +137,7 @@
 <!-- /.content-wrapper -->
 <?php $this->load->view('admin/footer') ?>
     <script>
-        function deleteCategory(id) {
+        function deleteArticle(id) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -126,7 +148,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '<?= base_url() . 'admin/category/delete/'; ?>' + id;
+                    window.location.href = '<?= base_url() . 'admin/article/delete/'; ?>' + id;
                 }
             });
         }
