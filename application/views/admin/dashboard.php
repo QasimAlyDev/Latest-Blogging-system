@@ -1,5 +1,10 @@
 
 <?php $this->load->view('admin/header') ?>
+<style>
+  .iziToast-wrapper{
+    margin-top: 20px;
+  }
+</style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -54,5 +59,19 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
+
+  <!-- when user logged in after access the login page through url then show the error izitoast  message and redirect to dashboard -->
+  <?php if ($this->session->flashdata('msg')): ?>
+    <script>
+        $(document).ready(function () {
+            iziToast.error({
+                title: 'warning',
+                message: '<?= $this->session->flashdata('msg') ?>',
+                position: 'topRight',
+                timeout: 5000, // Duration in milliseconds
+                closeOnClick: true, // Close the toast when clicked
+            });
+        });
+    </script>
+<?php endif; ?>
   <?php $this->load->view('admin/footer') ?>
