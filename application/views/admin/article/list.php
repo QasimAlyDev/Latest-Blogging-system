@@ -70,7 +70,7 @@
                                                 <td class="p-5">
                                                     <!-- model for view description -->
                                                     <div class="modal fade" id="modal<?= $article['id']; ?>">
-                                                        <!-- /.modal-dialog -->
+                                                    <!-- /.modal-dialog -->
                                                         <div class="modal-dialog">
                                                             <!-- /.modal-content -->
                                                             <div class="modal-content">
