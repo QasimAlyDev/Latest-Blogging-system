@@ -17,12 +17,6 @@
 <!-- iziToast CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
-<!-- iziToast JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
-
-
-
-
   <style>
     body {
       margin: 0;
@@ -84,6 +78,7 @@
     .text-red {
       color: red;
     }
+    
   </style>
 </head>
 
@@ -131,42 +126,42 @@
 
   <!-- jQuery -->
   <script src="<?= base_url()?>public/admin/plugins/jquery/jquery.min.js"></script>
+  <!-- iziToast JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="<?= base_url()?>public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url()?>public/admin/dist/js/adminlte.min.js"></script>
+  <!-- form validation start -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#loginForm input').on('input', function() {
+              const input = $(this);
+              const errorDiv = input.next('.invalid-feedback');
+  
+              if (input.val().trim() !== '') {
+                  input.removeClass('is-invalid');
+                  errorDiv.text('');
+              } else {
+                  input.addClass('is-invalid');
+                  errorDiv.text(input.attr('data-error'));
+              }
+          });
+      });
+  </script>
+  <?php if ($this->session->flashdata('msg')): ?>
+      <script>
+          $(document).ready(function () {
+              iziToast.error({
+                  title: 'Error',
+                  message: '<?= $this->session->flashdata('msg') ?>',
+                  position: 'topRight',
+                  timeout: 5000, // Duration in milliseconds
+                  closeOnClick: true, // Close the toast when clicked
+              });
+          });
+      </script>
+  <?php endif; ?>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- form validation start -->
-<script>
-    $(document).ready(function() {
-        $('#loginForm input').on('input', function() {
-            const input = $(this);
-            const errorDiv = input.next('.invalid-feedback');
-
-            if (input.val().trim() !== '') {
-                input.removeClass('is-invalid');
-                errorDiv.text('');
-            } else {
-                input.addClass('is-invalid');
-                errorDiv.text(input.attr('data-error'));
-            }
-        });
-    });
-</script>
-<?php if ($this->session->flashdata('msg')): ?>
-    <script>
-        $(document).ready(function () {
-            iziToast.error({
-                title: 'Error',
-                message: '<?= $this->session->flashdata('msg') ?>',
-                position: 'topRight',
-                timeout: 5000, // Duration in milliseconds
-                closeOnClick: true, // Close the toast when clicked
-            });
-        });
-    </script>
-<?php endif; ?>
-
 </html>
