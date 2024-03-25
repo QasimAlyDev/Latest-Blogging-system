@@ -68,33 +68,36 @@
                                                 <!-- <td><?= $i++; ?></td> -->
                                                 <td><?= $article['id']; ?></td>
                                                 <td class="p-5">
-                                                    <a href="" data-toggle="modal" data-target="#modal-default">
-                                                        <i class="fa-solid fa-eye text-secondary" data-toggle="tooltip" data-placement="top" title="View Article"></i>
-                                                    </a>
-                                                    <div class="modal fade" id="modal-default">
+                                                    <!-- model for view description -->
+                                                    <div class="modal fade" id="modal<?= $article['id']; ?>">
+                                                        <!-- /.modal-dialog -->
                                                         <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                            <h4 class="modal-title">Article Description</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                            <!-- /.modal-content -->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title"><?= $article['title']; ?></h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <?= $article['description'];?>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-between">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
                                                             </div>
-                                                            <div class="modal-body">
-                                                            <?= $article['description'];?>
-                                                            </div>
-                                                            <div class="modal-footer justify-content-between">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.modal-content -->
+                                                            <!-- /.modal-content -->
                                                         </div>
                                                         <!-- /.modal-dialog -->
                                                     </div>
-                                                    <a href="<?= base_url().'admin/article/edit/'.$article['id'] ?>">
+                                                    <a href="" data-toggle="modal" data-target="#modal<?= $article['id']; ?>" style="postion:absolute;">
+                                                        <i class="fa-solid fa-eye text-secondary" data-toggle="tooltip" data-placement="top" title="View Article"></i>
+                                                    </a>
+                                                    <a href="<?= base_url().'admin/article/edit/'.$article['id'] ?>" style="postion:absolute;">
                                                         <i class="fas fa-edit text-secondary" data-toggle="tooltip" data-placement="top" title="Edit Article"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);"  onclick="deleteArticle(<?= $article['id'];?>)">
+                                                    <a href="javascript:void(0);"  onclick="deleteArticle(<?= $article['id'];?>)" style="postion:absolute;">
                                                         <i class="fas fa-trash-alt text-secondary" data-toggle="tooltip" data-placement="top" title="Delete Article" ></i>
                                                     </a>
                                                 </td>
