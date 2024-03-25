@@ -3,6 +3,13 @@ defined ('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
     public function index() {
         $this->load->library('form_validation');
+        // user after log in access the login page again 
+        $admin = $this->session->userdata('admin');
+        if(!empty($admin)){
+            $this->session->set_flashdata("msg","You are already logged in");
+            redirect(base_url().'admin/home/index');
+        }
+        // user after login access the login page again through url 
         $this->load->view( 'admin/login' );
     }
     public function authenticate(){
