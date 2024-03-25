@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/adminlte.min.css">
   <!-- Custom Style Sheet -->
   <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/stylee.css">
-  
+  <!-- iziToast CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
   <style>
 
     /* Navbar */
