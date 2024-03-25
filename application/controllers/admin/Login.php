@@ -8,6 +8,8 @@ class Login extends CI_Controller {
     public function authenticate(){
         $this->load->library('form_validation');
         $this->load->model('Admin_model');
+        
+        $this->form_validation->set_error_delimiters('<p class="invalid_feedback">','</p>');
         $this->form_validation->set_rules( 'username', 'Username','trim|required');
         $this->form_validation->set_rules('password','Password','trim|required'); 
 
