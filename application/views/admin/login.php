@@ -7,22 +7,20 @@
   <title>CI Blog Web App</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url()?>public/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Bootstrap 4 -->
   <link rel="stylesheet" href="<?= base_url()?>public/admin/plugins/bootstrap/css/bootstrap.min.css">
   <!-- AdminLTE App -->
   <link rel="stylesheet" href="<?= base_url()?>public/admin/dist/css/adminlte.min.css">
-  <!-- Toastr CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<!-- iziToast CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- iziToast JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
 
-  <!-- Toastr JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 
 
   <style>
@@ -98,27 +96,23 @@
     <p class="login-box-msg">Sign in to start your session</p>
     <form action="<?= base_url().'admin/login/authenticate'?>" name="loginForm" id="loginForm" method="post">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+        <input type="text" class="form-control <?= (form_error('username') != "") ? 'is-invalid' : ''; ?>" name="username" id="username" placeholder="Username">
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-envelope"></span>
           </div>
         </div>
+        <div id="username"  class="invalid-feedback fs-5"><?= form_error('username');?></div>
       </div>
-      <h6 class="text-red font-weight-bold">
-        <?= form_error('username'); ?>
-      </h6>
       <div class="input-group mb-3">
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+        <input type="password" class="form-control <?= (form_error('password') != "") ? 'is-invalid' : ''; ?>" name="password" id="password" placeholder="Password">
         <div class="input-group-append">
           <div class="input-group-text">
             <span class="fas fa-lock"></span>
           </div>
         </div>
+        <div id="password"  class="invalid-feedback fs-5"><?= form_error('password');?></div>
       </div>
-      <h6 class="text-red font-weight-bold">
-        <?= form_error('password'); ?>
-      </h6>
       <div class="row">
         <div class="col-8">
           <div class="icheck-primary">
@@ -141,20 +135,38 @@
   <script src="<?= base_url()?>public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url()?>public/admin/dist/js/adminlte.min.js"></script>
-  <?php
-    if ($this->session->flashdata('msg')) {
-        echo '<script>';
-        echo '$(document).ready(function(){';
-        echo 'toastr.error("' . $this->session->flashdata('msg') . '");';
-        echo '});';
-        echo '</script>';
-
-        // Clear the session flash data
-        $this->session->set_flashdata('msg', '');
-    }
-?>
-
-
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- form validation start -->
+<script>
+    $(document).ready(function() {
+        $('#loginForm input').on('input', function() {
+            const input = $(this);
+            const errorDiv = input.next('.invalid-feedback');
+
+            if (input.val().trim() !== '') {
+                input.removeClass('is-invalid');
+                errorDiv.text('');
+            } else {
+                input.addClass('is-invalid');
+                errorDiv.text(input.attr('data-error'));
+            }
+        });
+    });
+</script>
+<?php if ($this->session->flashdata('msg')): ?>
+    <script>
+        $(document).ready(function () {
+            iziToast.error({
+                title: 'Error',
+                message: '<?= $this->session->flashdata('msg') ?>',
+                position: 'topRight',
+                timeout: 5000, // Duration in milliseconds
+                closeOnClick: true, // Close the toast when clicked
+            });
+        });
+    </script>
+<?php endif; ?>
 
 </html>
