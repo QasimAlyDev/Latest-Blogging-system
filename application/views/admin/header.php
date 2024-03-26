@@ -182,7 +182,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-secondary elevation-1">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="<?= base_url().'admin/home/index';?>" class="brand-link">
       <span class="brand-text" style="display: inline-block; padding: 5px; background-color: #f8f9fa; border-radius: 5px;">
         <img src="<?= base_url().'public/admin/dist/img/logo.png' ?>" width="230px" height="90px" alt="">
       </span>
